@@ -4,3 +4,5 @@ _assets/
 node_modules/
 .env
 .env.local
+
+.vercel
