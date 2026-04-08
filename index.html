@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<title>BACK PACKER RENTAL SHOP | 백패킹 장비 렌탈</title>
+<meta name="description" content="BACK PACKER RENTAL SHOP. 텐트, 침낭, 배낭 — 백패킹 장비 세트를 택배로 빌려드립니다.">
+<meta property="og:title" content="장비는 빌리고, 모험은 소유하세요">
+<meta property="og:description" content="백패킹 장비 렌탈 서비스 — 사전등록 시 첫 렌탈 할인">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== LE CAMP Design Tokens ===== */
+:root {
+  --color-black: #000000;
+  --color-black-60: rgba(0,0,0,.6);
+  --color-black-40: rgba(0,0,0,.4);
+  --color-black-20: rgba(0,0,0,.2);
+  --color-grey: #D9D9D9;
+  --color-white: #ffffff;
+  --color-white-40: rgba(255,255,255,.4);
+  --color-beige: #F7F1E8;
+  --color-red: #FE3A3A;
+  --color-burgundy: #561515;
+  --color-blue: #60A3F4;
+  --color-sky: #A3CBFD;
+  --ff-heading: 'DM Sans', -apple-system, sans-serif;
+  --ff-paragraph: 'DM Sans', -apple-system, sans-serif;
+  --ff-caption: 'DM Sans', -apple-system, sans-serif;
+  --radius-xs: 0.4rem;
+  --radius-sm: 1rem;
+  --radius-smd: 1.5rem;
+  --radius-md: 2rem;
+  --radius-lg: 4rem;
+  --radius-xl: 8rem;
+  --shadow: 0 .4rem 1.2rem 0 rgba(0,0,0,.08);
+  --shadow-dark: 0 0 1.2rem 0 rgba(0,0,0,.16);
+  --spacer-xs: 1rem;
+  --spacer-sm: 1.5rem;
+  --spacer-md: 2rem;
+  --spacer-lg: 3rem;
+  --spacer-xl: 4rem;
+  --grid-gap: 2rem;
+  --container-gap: 1.5rem;
+  --z-header: 200;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; color-scheme: light only; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-paragraph);
+  background: var(--color-white);
+  color: var(--color-black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+.section { padding: 6rem var(--container-gap); }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-beige { background: var(--color-beige); }
+.section-black { background: var(--color-black); color: var(--color-white); }
+.section-white { background: var(--color-white); }
+
+/* ===== Typography — Section Title ===== */
+.section-eyebrow {
+  font-family: var(--ff-caption);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.section-heading {
+  font-family: var(--ff-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.section-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 580px;
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacer-lg);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+/* ===== Buttons — c-button-primary ===== */
+.c-button-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-black); color: var(--color-white);
+  border: none; cursor: pointer;
+  padding: 10px 20px; border-radius: 10px;
+  font-size: 18px; font-family: var(--ff-paragraph); font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+}
+.c-button-primary:hover { background: var(--color-red); }
+.c-button-primary.-tone-red { background: var(--color-red); color: var(--color-white); }
+.c-button-primary.-tone-red:hover { background: #e02020; }
+.c-button-primary.-tone-light { background: var(--color-white); color: var(--color-black); }
+.c-button-primary.-tone-light:hover { background: var(--color-beige); }
+.c-button-primary.-size-sm { font-size: 14px; padding: 8px 16px; }
+
+.c-button-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: var(--color-black);
+  border: none; cursor: pointer;
+  padding: 10px 0; font-size: 1rem; font-family: var(--ff-paragraph); font-weight: 700;
+  text-decoration: none; border-bottom: 2px solid var(--color-black);
+  transition: color 0.2s, border-color 0.2s;
+}
+.c-button-secondary:hover { color: var(--color-red); border-color: var(--color-red); }
+.c-button-secondary.-tone-light { color: var(--color-white); border-color: var(--color-white); }
+.c-button-secondary.-tone-light:hover { color: var(--color-red); border-color: var(--color-red); }
+
+.c-button-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--color-white-40); background: transparent;
+  color: var(--color-white); cursor: pointer; font-size: 1.2rem;
+  transition: background 0.2s;
+}
+.c-button-icon:hover { background: rgba(255,255,255,0.1); }
+
+/* ===== Badge ===== */
+.c-badge {
+  display: inline-flex; align-items: center; padding: 4px 12px;
+  border-radius: var(--radius-xl); font-size: 0.75rem;
+  font-family: var(--ff-caption); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.c-badge.-beige { background: var(--color-beige); color: var(--color-black); }
+.c-badge.-dark { background: var(--color-black); color: var(--color-white); }
+.c-badge.-red { background: var(--color-red); color: var(--color-white); }
+.c-badge.-blue { background: var(--color-blue); color: var(--color-black); }
+
+/* ===== Tag ===== */
+.c-tag {
+  display: inline-flex; align-items: center; padding: 3px 10px;
+  background: rgba(0,0,0,0.06); border-radius: var(--radius-xs);
+  font-size: 0.75rem; font-family: var(--ff-caption); letter-spacing: 0.05em;
+}
+
+/* ===== Header ===== */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-header);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(247,241,232,0.96);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.3s;
+}
+
+.site-header.on-hero {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+}
+
+.site-logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none; color: var(--color-black);
+}
+
+.site-logo__icon {
+  width: 42px; height: 42px;
+  background: var(--color-red); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.site-logo__icon svg { width: 20px; height: 20px; fill: var(--color-white); }
+
+.site-logo__name {
+  font-size: 1.2rem; font-weight: 800; letter-spacing: 0.08em;
+  transition: color 0.3s;
+}
+
+.site-header.on-hero .site-logo__name { color: var(--color-white); }
+
+.header-nav { display: flex; align-items: center; gap: 1rem; }
+
+.header-nav .nav-links-desktop {
+  display: none;
+  list-style: none;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.header-nav .nav-links-desktop a {
+  font-size: 0.9375rem; font-weight: 500; color: var(--color-black);
+  text-decoration: none; padding: 8px 14px; border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+.header-nav .nav-links-desktop a:hover { background: rgba(0,0,0,0.05); }
+.site-header.on-hero .nav-links-desktop a { color: rgba(255,255,255,0.8); }
+.site-header.on-hero .nav-links-desktop a:hover { background: rgba(255,255,255,0.1); }
+
+.btn-contact {
+  background: var(--color-red); color: var(--color-white);
+  border: none; cursor: pointer;
+  padding: 10px 22px; border-radius: 10px;
+  font-size: 1rem; font-weight: 600; font-family: var(--ff-paragraph);
+  text-decoration: none; transition: background 0.2s;
+}
+.btn-contact:hover { background: #e02020; }
+
+.btn-menu {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: none; border: none; cursor: pointer;
+  font-size: 1rem; font-weight: 600; font-family: var(--ff-paragraph);
+  padding: 8px; color: var(--color-black); transition: color 0.3s;
+}
+.site-header.on-hero .btn-menu { color: var(--color-white); }
+
+.btn-menu .hamburger-lines {
+  display: flex; flex-direction: column; gap: 4px; width: 20px;
+}
+.btn-menu .hamburger-lines span {
+  display: block; height: 2px; background: currentColor; border-radius: 1px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.btn-menu.open .hamburger-lines span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.btn-menu.open .hamburger-lines span:nth-child(2) { opacity: 0; }
+.btn-menu.open .hamburger-lines span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Scroll lock on html */
+html.is-nav-open { overflow: hidden; }
+
+.mobile-overlay {
+  position: fixed; inset: 0;
+  background: var(--color-black);
+  z-index: 249;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+.mobile-overlay.open { opacity: 0.6; pointer-events: auto; }
+
+.mobile-menu {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(380px, 85vw); z-index: 250;
+  background: var(--color-white);
+  border-radius: 20px 0 0 20px;
+  padding: 96px 32px 40px;
+  transform: translateX(101%);
+  opacity: 0;
+  transition:
+    transform 0.4s cubic-bezier(0.86, 0, 0.07, 1),
+    opacity 0s linear 0.4s;
+  overflow-y: auto;
+}
+.mobile-menu.open {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    transform 0.4s cubic-bezier(0.86, 0, 0.07, 1),
+    opacity 0s linear 0s;
+}
+
+/* Menu internal links — hidden when closed */
+.mobile-menu a, .mobile-menu .m-cta {
+  visibility: hidden; pointer-events: none;
+  transition: visibility 0s linear 0.4s;
+}
+.mobile-menu.open a, .mobile-menu.open .m-cta {
+  visibility: visible; pointer-events: auto;
+  transition: visibility 0s linear 0s;
+}
+
+/* Group label */
+.mobile-menu .menu-group {
+  font-family: var(--ff-paragraph);
+  font-size: 0.8rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  opacity: 0.4; margin-top: 2rem; margin-bottom: 0.75rem;
+  padding-bottom: 0;
+}
+.mobile-menu .menu-group:first-child { margin-top: 0; }
+
+/* Main nav items — large */
+.mobile-menu a.menu-main {
+  display: block; padding: 10px 0;
+  font-size: 1.5rem; font-weight: 800;
+  color: var(--color-black); text-decoration: none;
+  line-height: 1.3;
+  border: none;
+}
+.mobile-menu a.menu-main:hover { color: var(--color-red); }
+
+/* Sub nav items — small */
+.mobile-menu a.menu-sub {
+  display: block; padding: 8px 0;
+  font-size: 1rem; font-weight: 400;
+  color: var(--color-black); text-decoration: none;
+  opacity: 0.7;
+  border: none;
+}
+.mobile-menu a.menu-sub:hover { opacity: 1; color: var(--color-red); }
+
+/* CTA button */
+.mobile-menu .m-cta {
+  display: block; margin-top: 2rem; padding: 14px;
+  text-align: center; background: var(--color-red); color: var(--color-white);
+  border-radius: 10px; font-weight: 700; font-size: 1rem;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .header-nav .nav-links-desktop { display: flex; }
+  .btn-menu { display: none; }
+  .mobile-menu, .mobile-overlay { display: none !important; }
+}
+
+/* ===== Hero — LE CAMP Style ===== */
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 2rem; overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  -o-object-fit: cover;
+  background: var(--color-black);
+}
+
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.5) 100%);
+}
+
+/* Floating circle badges — LE CAMP signature */
+.hero-badges { position: absolute; inset: 0; pointer-events: none; }
+
+.hero-badge {
+  position: absolute; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-family: var(--ff-caption); font-size: 0.55rem;
+  letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; padding: 0.5rem;
+}
+
+.hero-badge.-blue { border: 2px solid var(--color-blue); color: var(--color-blue); background: rgba(96,163,244,0.08); }
+.hero-badge.-red { border: 2px solid var(--color-red); color: var(--color-red); background: rgba(254,58,58,0.1); }
+.hero-badge.-white { border: 2px solid var(--color-white-40); color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.04); }
+
+.hb-1 { width: 120px; height: 120px; top: 10%; right: 28%; }
+.hb-2 { width: 130px; height: 130px; top: 18%; right: 4%; }
+.hb-3 { width: 100px; height: 100px; top: 15%; left: 4%; }
+.hb-4 { width: 140px; height: 140px; bottom: 20%; left: 3%; }
+.hb-5 { width: 110px; height: 110px; bottom: 14%; right: 5%; }
+.hb-6 { width: 105px; height: 105px; bottom: 6%; left: 38%; }
+
+@media (max-width: 768px) {
+  .hero-badges { display: none; }
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 900; color: var(--color-white);
+  line-height: 1.05; margin-bottom: 2rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+}
+
+.hero-scroll-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--color-white-40);
+  background: transparent; color: var(--color-white);
+  cursor: pointer; font-size: 1.2rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.hero-scroll-btn:hover { background: rgba(255,255,255,0.1); }
+
+.hero-meta {
+  position: absolute; bottom: 2rem; z-index: 1;
+  font-family: var(--ff-caption); font-size: 0.7rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.hero-meta-left { left: 2rem; }
+.hero-meta-right { right: 2rem; }
+
+/* ===== About / Intro ===== */
+.about-image-mosaic {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto; gap: 1rem;
+}
+.mosaic-img {
+  border-radius: var(--radius-md); overflow: hidden; height: 220px;
+}
+.mosaic-img:first-child { grid-column: 1 / -1; height: 280px; }
+.mosaic-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== Trail / Service Cards ===== */
+.trails-header {
+  text-align: center; max-width: 680px; margin: 0 auto 4rem;
+}
+.trails-header .section-body {
+  max-width: 100%; margin: 0 auto 1.5rem; text-align: center;
+}
+
+.trails-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+@media (max-width: 900px) { .trails-grid { grid-template-columns: 1fr; } }
+
+.trail-card {
+  background: var(--color-white); border-radius: var(--radius-md);
+  padding: 2rem; box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.trail-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-dark); }
+
+.trail-card__eyebrow {
+  font-family: var(--ff-caption); font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  opacity: 0.45; margin-bottom: 0.75rem;
+}
+.trail-card__title {
+  font-family: var(--ff-heading); font-size: 1.6rem;
+  font-weight: 900; line-height: 1.15; margin-bottom: 1rem;
+}
+.trail-card__body {
+  font-size: 0.9rem; line-height: 1.65; opacity: 0.7; margin-bottom: 1.5rem;
+}
+.trail-card__accent {
+  position: absolute; bottom: -30px; right: -30px;
+  width: 120px; height: 120px; border-radius: 50%; opacity: 0.12;
+}
+
+/* ===== Companies / Stats ===== */
+.companies-section { text-align: center; padding: 4rem 2rem; background: var(--color-black); }
+.companies-label {
+  font-family: var(--ff-caption); font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4); margin-bottom: 0.5rem;
+}
+.companies-stat {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900; color: var(--color-white); margin-bottom: 2.5rem;
+  max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.05;
+}
+
+.stats-row {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem;
+  margin-top: 3rem;
+}
+.c-stat__number {
+  font-size: 4rem; font-weight: 700; line-height: 1; color: var(--color-white);
+}
+.c-stat__label {
+  font-size: 0.85rem; opacity: 0.4;
+  font-family: var(--ff-caption); text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--color-white);
+}
+
+/* ===== Equipment Cards — Article style ===== */
+.eq-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+}
+@media (max-width: 700px) { .eq-grid { grid-template-columns: 1fr; } }
+
+.eq-card {
+  background: var(--color-white); border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.eq-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-dark); }
+
+.eq-card__img {
+  width: 100%; height: 240px; overflow: hidden;
+}
+.eq-card__img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.eq-card:hover .eq-card__img img { transform: scale(1.04); }
+
+.eq-card__content { padding: 1.75rem; }
+
+.eq-card__tags { display: flex; gap: 6px; margin-bottom: 0.75rem; }
+
+.eq-card__title {
+  font-size: 1.15rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem;
+}
+.eq-card__desc {
+  font-size: 0.9rem; opacity: 0.65; line-height: 1.6;
+}
+
+/* ===== Process — Event card style ===== */
+.process-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem;
+}
+@media (max-width: 700px) { .process-grid { grid-template-columns: 1fr; } }
+
+.process-card {
+  background: var(--color-white); border-radius: var(--radius-md);
+  padding: 1.5rem; box-shadow: var(--shadow);
+  display: flex; gap: 1.25rem; align-items: flex-start;
+}
+
+.process-card__num {
+  min-width: 58px; text-align: center;
+  background: var(--color-beige); border-radius: var(--radius-sm); padding: 0.75rem 0.5rem;
+}
+.process-card__num-val {
+  font-size: 2rem; font-weight: 900; line-height: 1; color: var(--color-black);
+}
+.process-card__num-label {
+  font-size: 0.65rem; font-family: var(--ff-caption);
+  text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6;
+}
+
+.process-card__body { flex: 1; }
+.process-card__title { font-size: 0.95rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.25rem; }
+.process-card__desc { font-size: 0.85rem; opacity: 0.6; line-height: 1.5; }
+
+/* ===== FAQ ===== */
+.faq-list { max-width: 720px; }
+
+.faq-item {
+  background: var(--color-white); border-radius: var(--radius-md);
+  margin-bottom: 0.5rem; overflow: hidden; box-shadow: var(--shadow);
+}
+
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 1.25rem 1.5rem;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--ff-paragraph); font-size: 0.95rem; font-weight: 600;
+  color: var(--color-black); text-align: left; line-height: 1.5;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--color-red); }
+
+.faq-plus {
+  flex-shrink: 0; width: 24px; height: 24px; margin-left: 16px;
+  position: relative; transition: transform 0.3s;
+}
+.faq-plus::before, .faq-plus::after {
+  content: ''; position: absolute;
+  background: var(--color-black); border-radius: 1px;
+  transition: background 0.2s, transform 0.3s;
+}
+.faq-plus::before { width: 14px; height: 2px; top: 11px; left: 5px; }
+.faq-plus::after { width: 2px; height: 14px; top: 5px; left: 11px; }
+
+.faq-item.open .faq-plus::after { transform: rotate(90deg); }
+.faq-item.open .faq-plus::before, .faq-item.open .faq-plus::after { background: var(--color-red); }
+
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+.faq-a-inner {
+  padding: 0 1.5rem 1.25rem;
+  font-size: 0.9rem; line-height: 1.8; opacity: 0.7;
+}
+
+/* ===== Contact Form ===== */
+.form-card {
+  background: var(--color-white); border-radius: var(--radius-md);
+  padding: 2rem; box-shadow: var(--shadow);
+}
+
+.form-row { margin-bottom: 1rem; }
+
+.form-row label {
+  display: block; font-size: 0.875rem; font-weight: 600;
+  font-family: var(--ff-paragraph);
+  color: var(--color-black); margin-bottom: 0.4rem;
+}
+
+.c-input {
+  width: 100%; padding: 12px 16px;
+  border: 2px solid rgba(0,0,0,0.15); border-radius: var(--radius-sm);
+  font-size: 1rem; font-family: var(--ff-paragraph); background: var(--color-white);
+  transition: border-color 0.2s; color: var(--color-black);
+}
+.c-input:focus { outline: none; border-color: var(--color-black); }
+.c-input::placeholder { color: var(--color-black-40); }
+
+.check-label {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.875rem; font-family: var(--ff-paragraph); color: var(--color-black-60); cursor: pointer; line-height: 1.5;
+}
+.check-label input[type="checkbox"] {
+  width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; accent-color: var(--color-red);
+}
+
+.form-submit { width: 100%; margin-top: 0.5rem; font-size: 1rem; }
+
+.success-msg { text-align: center; padding: 3rem 1rem; }
+.success-msg p { font-size: 1.05rem; font-weight: 600; line-height: 1.7; }
+
+/* ===== Footer — LE CAMP style ===== */
+.site-footer { background: var(--color-black); color: var(--color-white); padding: 4rem 2rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem;
+}
+.footer-tagline { opacity: 0.4; font-size: 0.9rem; max-width: 280px; line-height: 1.6; margin-top: 0.75rem; }
+.footer-links { display: flex; gap: 3rem; flex-wrap: wrap; }
+.footer-col h4 {
+  font-family: var(--ff-caption); font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  opacity: 0.4; margin-bottom: 1rem;
+}
+.footer-col a {
+  display: block; color: rgba(255,255,255,0.75);
+  text-decoration: none; margin-bottom: 0.6rem; font-size: 0.9rem;
+}
+.footer-col a:hover { color: var(--color-white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.8rem; opacity: 0.35; }
+
+/* ===== Mute Toggle Button ===== */
+.mute-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 90;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s, opacity 0.2s;
+  opacity: 0.6;
+}
+.mute-btn:hover { opacity: 1; background: rgba(0,0,0,0.6); }
+.mute-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+/* ===== Video in mosaic ===== */
+.mosaic-img video {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+/* ===== Video CTA Banner ===== */
+.video-banner {
+  position: relative; overflow: hidden;
+  min-height: 480px;
+  display: flex; align-items: center; justify-content: center;
+}
+.video-banner__bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.video-banner__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 100%);
+}
+.video-banner__content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 4rem 2rem;
+  max-width: 580px;
+}
+.video-banner__content h2 {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 900; color: var(--color-white);
+  line-height: 1.1; margin-bottom: 1rem;
+}
+.video-banner__content p {
+  font-size: 1.05rem; color: rgba(255,255,255,0.75);
+  line-height: 1.7; margin-bottom: 2rem;
+}
+
+/* ===== Stats with video bg ===== */
+.companies-section {
+  position: relative; overflow: hidden;
+}
+.companies-section__bg-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.companies-section__overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.82);
+}
+.companies-section > *:not(.companies-section__bg-video):not(.companies-section__overlay) {
+  position: relative; z-index: 2;
+}
+
+/* ===== Reveal ===== */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+:focus-visible { outline: 2px solid var(--color-red); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header on-hero">
+  <a href="#" class="site-logo">
+    <div class="site-logo__icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5L18.5 20h-13L12 6.5z"/></svg>
+    </div>
+    <span class="site-logo__name">BACK PACKER</span>
+  </a>
+  <nav class="header-nav">
+    <ul class="nav-links-desktop">
+      <li><a href="#about">서비스</a></li>
+      <li><a href="#equipment">장비</a></li>
+      <li><a href="#process">이용 방법</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="btn-menu" aria-label="메뉴">
+      <div class="hamburger-lines"><span></span><span></span><span></span></div>
+      Menu
+    </button>
+  </nav>
+</header>
+<div class="mobile-overlay"></div>
+<div class="mobile-menu">
+  <div class="menu-group">서비스</div>
+  <a href="#about" class="menu-main">서비스 소개</a>
+  <a href="#equipment" class="menu-main">장비 세트</a>
+  <a href="#process" class="menu-main">이용 방법</a>
+
+  <div class="menu-group">더 알아보기</div>
+  <a href="#faq" class="menu-sub">자주 묻는 질문</a>
+  <a href="#contact" class="menu-sub">사전등록 안내</a>
+
+  <a href="#contact" class="m-cta">사전등록 신청하기</a>
+</div>
+
+<main>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <video class="hero-bg" autoplay muted loop playsinline>
+    <source src="video/1.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title" data-anim>장비는 빌리고<br>모험은 소유하세요</h1>
+    <a href="#about" class="hero-scroll-btn" data-anim>↓</a>
+  </div>
+</section>
+
+<!-- About — two-col split -->
+<section class="section section-beige" id="about">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="reveal">
+        <div class="section-eyebrow">About</div>
+        <h2 class="section-heading">장비 걱정 없이<br>가볍게 떠나세요</h2>
+        <p class="section-body">백패킹이 처음이라 어떤 장비가 필요한지 모르겠다고요? 텐트, 침낭, 배낭부터 코펠까지 — 필요한 장비를 세트로 준비해 택배로 보내드립니다.</p>
+        <p class="section-body">모든 장비는 매 회수 후 점검·세척·정비를 거칩니다. 검수 완료된 장비만 다음 고객에게 전달됩니다.</p>
+        <a href="#contact" class="c-button-secondary">사전등록 신청하기 →</a>
+      </div>
+      <div class="about-image-mosaic reveal">
+        <div class="mosaic-img"><video autoplay muted loop playsinline><source src="video/2.mp4" type="video/mp4"></video></div>
+        <div class="mosaic-img"><img src="img/KakaoTalk_20260408_204854757.jpg" alt="택배 수령 언박싱" loading="lazy" width="300" height="220"></div>
+        <div class="mosaic-img"><video autoplay muted loop playsinline><source src="video/4.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services — Trail cards -->
+<section class="section section-white" id="services">
+  <div class="section-inner">
+    <div class="trails-header">
+      <div class="section-eyebrow reveal">Services</div>
+      <h2 class="section-heading reveal">모든 단계의<br>아웃도어를 위한 렌탈</h2>
+      <p class="section-body reveal">입문부터 단체 캠핑까지, 목적에 맞는 장비 세트를 골라 택배로 받으세요. 사용 후 보내기만 하면 끝.</p>
+      <a href="#contact" class="c-button-primary -tone-red reveal">사전등록 신청하기</a>
+    </div>
+    <div class="trails-grid">
+      <div class="trail-card reveal">
+        <div class="trail-card__eyebrow">풀세트 렌탈</div>
+        <h3 class="trail-card__title">세트로<br>한 번에</h3>
+        <p class="trail-card__body">텐트·침낭·배낭·코펠, 인원과 목적에 맞는 장비를 세트로 한 번에 빌려드립니다. 개별 구매 고민은 이제 그만.</p>
+        <a href="#equipment" class="c-button-secondary">장비 보기 →</a>
+        <div class="trail-card__accent" style="background:var(--color-blue);"></div>
+      </div>
+      <div class="trail-card reveal">
+        <div class="trail-card__eyebrow">택배 왕복</div>
+        <h3 class="trail-card__title">받고, 쓰고,<br>보내면 끝</h3>
+        <p class="trail-card__body">집 앞에서 택배로 받고, 사용 후 그대로 보내면 됩니다. 매장 방문이나 반납 수고가 없습니다.</p>
+        <a href="#process" class="c-button-secondary">이용 방법 →</a>
+        <div class="trail-card__accent" style="background:var(--color-red);"></div>
+      </div>
+      <div class="trail-card reveal">
+        <div class="trail-card__eyebrow">매회 정비</div>
+        <h3 class="trail-card__title">검수 완료된<br>장비만</h3>
+        <p class="trail-card__body">회수된 장비는 점검·세척·정비를 거쳐 다음 고객에게 전달됩니다. 초기 비용 0원, 구매 부담 없이 시작하세요.</p>
+        <a href="#contact" class="c-button-secondary">사전등록 →</a>
+        <div class="trail-card__accent" style="background:var(--color-burgundy);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="companies-section">
+  <div class="companies-label reveal">Gear Sets</div>
+  <div class="companies-stat reveal">오픈 시 10종 이상의<br>장비 세트가 준비됩니다</div>
+  <div class="stats-row reveal">
+    <div>
+      <div class="c-stat__number" data-count="10">0</div>
+      <div class="c-stat__label">장비 세트</div>
+    </div>
+    <div>
+      <div class="c-stat__number">매회</div>
+      <div class="c-stat__label">정비 · 세척</div>
+    </div>
+    <div>
+      <div class="c-stat__number">택배</div>
+      <div class="c-stat__label">왕복 배송</div>
+    </div>
+    <div>
+      <div class="c-stat__number" data-count="0" data-suffix="원">0원</div>
+      <div class="c-stat__label">초기 비용</div>
+    </div>
+  </div>
+</section>
+
+<!-- Equipment — Article cards -->
+<section class="section section-beige" id="equipment">
+  <div class="section-inner">
+    <div class="two-col" style="align-items:flex-start;">
+      <div class="reveal">
+        <div class="section-eyebrow">Equipment</div>
+        <h2 class="section-heading">이런 장비를<br>빌릴 수 있어요</h2>
+        <p class="section-body">사전등록하시면 오픈 소식을 가장 먼저 알려드립니다.</p>
+        <a href="#contact" class="c-button-secondary">사전등록 신청하기 →</a>
+      </div>
+      <div class="eq-grid">
+        <div class="eq-card reveal">
+          <div class="eq-card__img"><img src="img/KakaoTalk_20260408_192000303.jpg" alt="밤하늘 텐트" loading="lazy" width="600" height="400"></div>
+          <div class="eq-card__content">
+            <div class="eq-card__tags"><span class="c-badge -red">인기</span> <span class="c-tag">1~2인</span></div>
+            <div class="eq-card__title">1~2인 백패킹 세트</div>
+            <div class="eq-card__desc">1인용 텐트 + 침낭 + 매트 + 배낭(50L) + 코펠 세트</div>
+          </div>
+        </div>
+        <div class="eq-card reveal">
+          <div class="eq-card__img"><img src="img/KakaoTalk_20260408_192000303_02.jpg" alt="숲속 캠핑" loading="lazy" width="600" height="400"></div>
+          <div class="eq-card__content">
+            <div class="eq-card__tags"><span class="c-tag">3~4인</span></div>
+            <div class="eq-card__title">3~4인 캠핑 세트</div>
+            <div class="eq-card__desc">3~4인용 텐트 + 침낭 x2 + 타프 + 테이블 + 의자</div>
+          </div>
+        </div>
+        <div class="eq-card reveal">
+          <div class="eq-card__img"><img src="img/KakaoTalk_20260408_192000303_01.jpg" alt="산 트레킹" loading="lazy" width="600" height="400"></div>
+          <div class="eq-card__content">
+            <div class="eq-card__tags"><span class="c-badge -blue">입문 추천</span> <span class="c-tag">1인</span></div>
+            <div class="eq-card__title">미니멀 입문 세트</div>
+            <div class="eq-card__desc">배낭(35L) + 침낭 + 매트 + 헤드램프</div>
+          </div>
+        </div>
+        <div class="eq-card reveal">
+          <div class="eq-card__img"><img src="img/KakaoTalk_20260408_192000303_03.jpg" alt="장비 박스" loading="lazy" width="600" height="400"></div>
+          <div class="eq-card__content">
+            <div class="eq-card__tags"><span class="c-tag">추가 가능</span></div>
+            <div class="eq-card__title">취사 장비 세트</div>
+            <div class="eq-card__desc">버너 + 코펠 + 식기 + 워터백</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process — Event card style -->
+<section class="section section-white" id="process">
+  <div class="section-inner">
+    <div class="two-col" style="align-items:flex-start;">
+      <div class="reveal">
+        <div class="section-eyebrow">How it works</div>
+        <h2 class="section-heading">이렇게<br>이용하세요</h2>
+        <p class="section-body">간단한 6단계, 장비 걱정 없이 떠나세요.</p>
+        <a href="#contact" class="c-button-secondary">사전등록 신청하기 →</a>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal">
+          <div class="process-card__num">
+            <div class="process-card__num-val">1</div>
+            <div class="process-card__num-label">Step</div>
+          </div>
+          <div class="process-card__body">
+            <div class="process-card__title">날짜 선택</div>
+            <div class="process-card__desc">캘린더에서 원하는 사용일 선택</div>
+          </div>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-card__num">
+            <div class="process-card__num-val">2</div>
+            <div class="process-card__num-label">Step</div>
+          </div>
+          <div class="process-card__body">
+            <div class="process-card__title">세트 선택</div>
+            <div class="process-card__desc">인원과 목적에 맞는 세트 선택</div>
+          </div>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-card__num">
+            <div class="process-card__num-val">3</div>
+            <div class="process-card__num-label">Step</div>
+          </div>
+          <div class="process-card__body">
+            <div class="process-card__title">간편 결제</div>
+            <div class="process-card__desc">네이버페이·카카오페이 결제</div>
+          </div>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-card__num">
+            <div class="process-card__num-val">4</div>
+            <div class="process-card__num-label">Step</div>
+          </div>
+          <div class="process-card__body">
+            <div class="process-card__title">택배 수령</div>
+            <div class="process-card__desc">사용일 전날 집 앞 배송</div>
+          </div>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-card__num">
+            <div class="process-card__num-val">5</div>
+            <div class="process-card__num-label">Step</div>
+          </div>
+          <div class="process-card__body">
+            <div class="process-card__title">모험 출발</div>
+            <div class="process-card__desc">장비 걱정 없이 자연을 만끽</div>
+          </div>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-card__num">
+            <div class="process-card__num-val">6</div>
+            <div class="process-card__num-label">Step</div>
+          </div>
+          <div class="process-card__body">
+            <div class="process-card__title">택배 반납</div>
+            <div class="process-card__desc">박스에 넣고 보내면 끝</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video CTA Banner -->
+<div class="video-banner reveal">
+  <video class="video-banner__bg" autoplay muted loop playsinline><source src="video/3.mp4" type="video/mp4"></video>
+  <div class="video-banner__overlay"></div>
+  <div class="video-banner__content">
+    <h2>첫 번째 모험을<br>준비하세요</h2>
+    <p>사전등록하시면 오픈 소식과 함께 첫 렌탈 할인 쿠폰을 드립니다.</p>
+    <a href="#contact" class="c-button-primary -tone-red">사전등록 신청하기 →</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section section-beige" id="faq">
+  <div class="section-inner">
+    <div class="two-col" style="align-items:flex-start;">
+      <div class="reveal">
+        <div class="section-eyebrow">FAQ</div>
+        <h2 class="section-heading">자주 묻는<br>질문</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">렌탈 기간은 어떻게 되나요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">1박2일 또는 2박3일 두 가지 옵션을 제공합니다.</div></div></div>
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">예약은 언제부터 가능한가요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">사용일 기준 3영업일 전부터 예약 가능합니다. 당일·내일·모레 예약은 불가합니다.</div></div></div>
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">장비 상태는 어떤가요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">모든 장비는 매 회수 후 점검·세척·정비를 거칩니다. 검수 완료된 장비만 다음 고객에게 전달됩니다.</div></div></div>
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">결제 수단은 무엇인가요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">네이버페이와 카카오페이를 지원합니다.</div></div></div>
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">취소·환불이 가능한가요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">사용 시작일 3일 전까지 취소 가능합니다. 배송 준비가 시작된 후에는 취소가 불가합니다.</div></div></div>
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">장비가 파손되면 어떻게 하나요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">정상 사용 중 발생한 경미한 마모는 무상 처리됩니다. 중대한 파손·분실은 별도 안내드립니다.</div></div></div>
+        <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">배송은 어떻게 되나요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">택배로 받고, 택배로 보내면 됩니다. 매장 방문은 필요 없습니다.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section section-white" id="contact">
+  <div class="section-inner">
+    <div class="two-col" style="align-items:flex-start;">
+      <div class="reveal">
+        <div class="section-eyebrow">사전등록</div>
+        <h2 class="section-heading">오픈 알림<br>받기</h2>
+        <p class="section-body">사전등록하시면 오픈 소식과 함께 첫 렌탈 할인 쿠폰을 드립니다.</p>
+        <div style="margin-top:2rem; display:flex; flex-direction:column; gap:1.25rem;">
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:var(--color-red); border-radius:50%; flex-shrink:0;"></span><span style="font-size:0.9375rem; font-weight:500;">첫 렌탈 할인 쿠폰 제공</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:var(--color-blue); border-radius:50%; flex-shrink:0;"></span><span style="font-size:0.9375rem; font-weight:500;">오픈 소식 가장 먼저 알림</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:var(--color-blue); border-radius:50%; flex-shrink:0;"></span><span style="font-size:0.9375rem; font-weight:500;">신규 세트 우선 예약 기회</span></div>
+          <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:var(--color-red); border-radius:50%; flex-shrink:0;"></span><span style="font-size:0.9375rem; font-weight:500;">장비 추천 1:1 상담</span></div>
+        </div>
+      </div>
+      <div class="form-card reveal">
+        <form id="contact-form" aria-label="사전등록 폼">
+          <div class="form-row">
+            <label for="name">이름</label>
+            <input class="c-input" type="text" id="name" name="name" placeholder="홍길동" required>
+          </div>
+          <div class="form-row">
+            <label for="phone">연락처</label>
+            <input class="c-input" type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+          </div>
+          <div class="form-row">
+            <label for="email">이메일</label>
+            <input class="c-input" type="email" id="email" name="email" placeholder="example@email.com" required>
+          </div>
+          <div class="form-row">
+            <label for="interest">관심 장비</label>
+            <select class="c-input" id="interest" name="interest">
+              <option value="">선택해주세요</option>
+              <option value="backpacking">백패킹 세트</option>
+              <option value="camping">캠핑 세트</option>
+              <option value="cooking">취사 장비</option>
+              <option value="all">전부 다 궁금해요</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="check-label">
+              <input type="checkbox" name="privacy" required>
+              개인정보 수집 및 이용에 동의합니다
+            </label>
+          </div>
+          <button type="submit" class="c-button-primary -tone-red form-submit">사전등록 신청하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Mute Toggle -->
+<button class="mute-btn" id="muteBtn" aria-label="음소거 해제">
+  <svg viewBox="0 0 24 24" class="icon-muted"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+  <svg viewBox="0 0 24 24" class="icon-unmuted" style="display:none;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+</button>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="site-logo" style="color:#fff;">
+          <div class="site-logo__icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5L18.5 20h-13L12 6.5z"/></svg></div>
+          <span class="site-logo__name">BACK PACKER</span>
+        </a>
+        <p class="footer-tagline">백패킹 장비 렌탈 서비스. 택배로 받고, 쓰고, 보내면 끝. 2026 오픈 예정.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="#about">서비스 소개</a>
+          <a href="#equipment">장비 세트</a>
+          <a href="#process">이용 방법</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="#contact">사전등록</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 BACK PACKER RENTAL SHOP. All rights reserved.</span>
+      <a href="#contact" class="c-button-primary -tone-red -size-sm">사전등록</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Header scroll */
+var header = document.querySelector('.site-header');
+var heroEl = document.querySelector('.hero');
+function checkHeader() {
+  var heroBottom = heroEl.getBoundingClientRect().bottom;
+  header.classList.toggle('on-hero', heroBottom > 80);
+}
+window.addEventListener('scroll', checkHeader);
+checkHeader();
+
+/* Mobile menu */
+var menuBtn = document.querySelector('.btn-menu');
+var mm = document.querySelector('.mobile-menu');
+var ov = document.querySelector('.mobile-overlay');
+function toggleMenu() {
+  var isOpen = menuBtn.classList.toggle('open');
+  mm.classList.toggle('open');
+  ov.classList.toggle('open');
+  document.documentElement.classList.toggle('is-nav-open', isOpen);
+}
+menuBtn.addEventListener('click', toggleMenu);
+ov.addEventListener('click', toggleMenu);
+mm.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() { if (menuBtn.classList.contains('open')) toggleMenu(); });
+});
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* Reveal */
+var ro = new IntersectionObserver(function(es) {
+  es.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+
+/* Hero entrance */
+document.addEventListener('DOMContentLoaded', function() {
+  var els = document.querySelectorAll('[data-anim]');
+  els.forEach(function(el, i) {
+    el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    el.style.transitionDelay = (0.3 + i * 0.2) + 's';
+    requestAnimationFrame(function() { requestAnimationFrame(function() {
+      el.style.opacity = '1'; el.style.transform = 'translateY(0)';
+    }); });
+  });
+});
+
+/* Count up */
+var co = new IntersectionObserver(function(es) {
+  es.forEach(function(en) {
+    if (!en.isIntersecting) return;
+    var el = en.target, t = parseInt(el.getAttribute('data-count')), s = el.getAttribute('data-suffix') || '';
+    if (isNaN(t)) return;
+    var d = 2000, st = null;
+    function a(now) {
+      if (!st) st = now; var p = Math.min((now - st) / d, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(ease * t) + s;
+      if (p < 1) requestAnimationFrame(a); else el.textContent = t + s;
+    }
+    requestAnimationFrame(a); co.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(function(el) { co.observe(el); });
+
+/* FAQ */
+document.querySelectorAll('.faq-q').forEach(function(b) {
+  b.addEventListener('click', function() {
+    var it = this.parentElement, an = it.querySelector('.faq-a'), op = it.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o) {
+      o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = '0';
+      o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!op) { it.classList.add('open'); an.style.maxHeight = an.scrollHeight + 'px'; this.setAttribute('aria-expanded', 'true'); }
+  });
+});
+
+/* Mute toggle — all videos */
+var muteBtn = document.getElementById('muteBtn');
+var allVideos = document.querySelectorAll('video');
+var isMuted = true;
+muteBtn.addEventListener('click', function() {
+  isMuted = !isMuted;
+  allVideos.forEach(function(v) { v.muted = isMuted; });
+  muteBtn.querySelector('.icon-muted').style.display = isMuted ? 'block' : 'none';
+  muteBtn.querySelector('.icon-unmuted').style.display = isMuted ? 'none' : 'block';
+  muteBtn.setAttribute('aria-label', isMuted ? '음소거 해제' : '음소거');
+});
+
+/* Form */
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var fd = new FormData(this), d = Object.fromEntries(fd);
+  if (!d.privacy) { alert('개인정보 수집 및 이용에 동의해주세요.'); return; }
+  var btn = this.querySelector('button[type="submit"]');
+  btn.textContent = '전송 중...'; btn.disabled = true;
+  try {
+    var r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+    if (!r.ok) throw new Error();
+    this.innerHTML = '<div class="success-msg"><p>등록이 완료되었습니다.<br>오픈하면 가장 먼저 알려드리겠습니다.</p></div>';
+  } catch (err) {
+    var sv = JSON.parse(localStorage.getItem('pending_leads') || '[]');
+    sv.push(Object.assign({}, d, { timestamp: new Date().toISOString() }));
+    localStorage.setItem('pending_leads', JSON.stringify(sv));
+    this.innerHTML = '<div class="success-msg"><p>등록이 완료되었습니다.<br>오픈하면 가장 먼저 알려드리겠습니다.</p></div>';
+  }
+});
+</script>
+</body>
+</html>

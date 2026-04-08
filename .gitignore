@@ -1,0 +1,6 @@
+_docs/
+_assets/
+.vercel/
+node_modules/
+.env
+.env.local
