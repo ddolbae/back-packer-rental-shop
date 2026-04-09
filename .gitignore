@@ -4,5 +4,6 @@ _assets/
 node_modules/
 .env
 .env.local
+img/flux-test*
 
 .vercel

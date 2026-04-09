@@ -57,6 +57,8 @@ body {
   color: var(--color-black);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 img { display: block; max-width: 100%; }
@@ -445,10 +447,14 @@ html.is-nav-open { overflow: hidden; }
 .trail-card__title {
   font-family: var(--ff-heading); font-size: 1.6rem;
   font-weight: 900; line-height: 1.15; margin-bottom: 1rem;
+  transition: transform 0.35s ease, font-size 0.35s ease;
 }
+.trail-card:hover .trail-card__title { transform: scale(1.06); transform-origin: left top; }
 .trail-card__body {
   font-size: 0.9rem; line-height: 1.65; opacity: 0.7; margin-bottom: 1.5rem;
+  transition: transform 0.35s ease;
 }
+.trail-card:hover .trail-card__body { transform: scale(1.02); transform-origin: left top; }
 .trail-card__accent {
   position: absolute; bottom: -30px; right: -30px;
   width: 120px; height: 120px; border-radius: 50%; opacity: 0.12;
@@ -812,23 +818,23 @@ html.is-nav-open { overflow: hidden; }
     <div class="trails-grid">
       <div class="trail-card reveal">
         <div class="trail-card__eyebrow">풀세트 렌탈</div>
-        <h3 class="trail-card__title">세트로<br>한 번에</h3>
+        <h3 class="trail-card__title">세트로 한 번에</h3>
         <p class="trail-card__body">텐트·침낭·배낭·코펠, 인원과 목적에 맞는 장비를 세트로 한 번에 빌려드립니다. 개별 구매 고민은 이제 그만.</p>
         <a href="#equipment" class="c-button-secondary">장비 보기 →</a>
         <div class="trail-card__accent" style="background:var(--color-blue);"></div>
       </div>
       <div class="trail-card reveal">
         <div class="trail-card__eyebrow">택배 왕복</div>
-        <h3 class="trail-card__title">받고, 쓰고,<br>보내면 끝</h3>
+        <h3 class="trail-card__title">받고, 쓰고, 보내면 끝</h3>
         <p class="trail-card__body">집 앞에서 택배로 받고, 사용 후 그대로 보내면 됩니다. 매장 방문이나 반납 수고가 없습니다.</p>
         <a href="#process" class="c-button-secondary">이용 방법 →</a>
         <div class="trail-card__accent" style="background:var(--color-red);"></div>
       </div>
       <div class="trail-card reveal">
         <div class="trail-card__eyebrow">매회 정비</div>
-        <h3 class="trail-card__title">검수 완료된<br>장비만</h3>
+        <h3 class="trail-card__title">검수 완료된 장비만</h3>
         <p class="trail-card__body">회수된 장비는 점검·세척·정비를 거쳐 다음 고객에게 전달됩니다. 초기 비용 0원, 구매 부담 없이 시작하세요.</p>
-        <a href="#contact" class="c-button-secondary">사전등록 →</a>
+        <a href="#contact" class="c-button-secondary">사전등록 신청하기 →</a>
         <div class="trail-card__accent" style="background:var(--color-burgundy);"></div>
       </div>
     </div>
@@ -846,7 +852,7 @@ html.is-nav-open { overflow: hidden; }
     </div>
     <div>
       <div class="c-stat__number">매회</div>
-      <div class="c-stat__label">정비 · 세척</div>
+      <div class="c-stat__label">정비·세척</div>
     </div>
     <div>
       <div class="c-stat__number">택배</div>
@@ -865,7 +871,7 @@ html.is-nav-open { overflow: hidden; }
     <div class="two-col" style="align-items:flex-start;">
       <div class="reveal">
         <div class="section-eyebrow">Equipment</div>
-        <h2 class="section-heading">이런 장비를<br>빌릴 수 있어요</h2>
+        <h2 class="section-heading">이런 장비를 빌릴 수 있어요</h2>
         <p class="section-body">사전등록하시면 오픈 소식을 가장 먼저 알려드립니다.</p>
         <a href="#contact" class="c-button-secondary">사전등록 신청하기 →</a>
       </div>
@@ -913,7 +919,7 @@ html.is-nav-open { overflow: hidden; }
     <div class="two-col" style="align-items:flex-start;">
       <div class="reveal">
         <div class="section-eyebrow">How it works</div>
-        <h2 class="section-heading">이렇게<br>이용하세요</h2>
+        <h2 class="section-heading">이렇게 이용하세요</h2>
         <p class="section-body">간단한 6단계, 장비 걱정 없이 떠나세요.</p>
         <a href="#contact" class="c-button-secondary">사전등록 신청하기 →</a>
       </div>
@@ -988,7 +994,7 @@ html.is-nav-open { overflow: hidden; }
   <video class="video-banner__bg" autoplay muted loop playsinline><source src="video/3.mp4" type="video/mp4"></video>
   <div class="video-banner__overlay"></div>
   <div class="video-banner__content">
-    <h2>첫 번째 모험을<br>준비하세요</h2>
+    <h2>첫 번째 모험을 준비하세요</h2>
     <p>사전등록하시면 오픈 소식과 함께 첫 렌탈 할인 쿠폰을 드립니다.</p>
     <a href="#contact" class="c-button-primary -tone-red">사전등록 신청하기 →</a>
   </div>
@@ -1000,7 +1006,7 @@ html.is-nav-open { overflow: hidden; }
     <div class="two-col" style="align-items:flex-start;">
       <div class="reveal">
         <div class="section-eyebrow">FAQ</div>
-        <h2 class="section-heading">자주 묻는<br>질문</h2>
+        <h2 class="section-heading">자주 묻는 질문</h2>
       </div>
       <div class="faq-list">
         <div class="faq-item reveal"><button class="faq-q" aria-expanded="false">렌탈 기간은 어떻게 되나요?<span class="faq-plus"></span></button><div class="faq-a"><div class="faq-a-inner">1박2일 또는 2박3일 두 가지 옵션을 제공합니다.</div></div></div>
@@ -1021,7 +1027,7 @@ html.is-nav-open { overflow: hidden; }
     <div class="two-col" style="align-items:flex-start;">
       <div class="reveal">
         <div class="section-eyebrow">사전등록</div>
-        <h2 class="section-heading">오픈 알림<br>받기</h2>
+        <h2 class="section-heading">오픈 알림 받기</h2>
         <p class="section-body">사전등록하시면 오픈 소식과 함께 첫 렌탈 할인 쿠폰을 드립니다.</p>
         <div style="margin-top:2rem; display:flex; flex-direction:column; gap:1.25rem;">
           <div style="display:flex; align-items:center; gap:12px;"><span style="width:8px; height:8px; background:var(--color-red); border-radius:50%; flex-shrink:0;"></span><span style="font-size:0.9375rem; font-weight:500;">첫 렌탈 할인 쿠폰 제공</span></div>
@@ -1084,7 +1090,7 @@ html.is-nav-open { overflow: hidden; }
           <div class="site-logo__icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5L18.5 20h-13L12 6.5z"/></svg></div>
           <span class="site-logo__name">BACK PACKER</span>
         </a>
-        <p class="footer-tagline">백패킹 장비 렌탈 서비스. 택배로 받고, 쓰고, 보내면 끝. 2026 오픈 예정.</p>
+        <p class="footer-tagline">백패킹 장비 렌탈 서비스. 2026 오픈 예정.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
