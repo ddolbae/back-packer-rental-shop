@@ -648,6 +648,29 @@ html.is-nav-open { overflow: hidden; }
   align-items: center; flex-wrap: wrap; gap: 1rem;
 }
 .footer-copy { font-size: 0.8rem; opacity: 0.35; }
+.footer-build {
+  display: block; margin-top: 0.35rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+.fb-char {
+  display: inline-block;
+  color: rgba(255,255,255,0.35);
+}
+@keyframes fb-flyout {
+  0%   { transform: translateX(0);     opacity: 1;   color: rgba(255,255,255,0.3);  text-shadow: none; }
+  20%  { transform: translateX(15vw);  opacity: 1;   color: rgba(255,255,255,0.5);  text-shadow: none; }
+  45%  { transform: translateX(40vw);  opacity: 1;   color: rgba(255,255,255,0.75); text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+  65%  { transform: translateX(65vw);  opacity: 1;   color: #ffffff;                text-shadow: 0 0 16px #fff; }
+  80%  { transform: translateX(85vw);  opacity: 0.5; color: #ffffff;                text-shadow: 0 0 20px #fff; }
+  92%  { transform: translateX(105vw); opacity: 0.1; color: #ffffff;                text-shadow: 0 0 24px #fff; }
+  100% { transform: translateX(120vw); opacity: 0;   color: #ffffff;                text-shadow: 0 0 24px #fff; }
+}
+.fb-fly {
+  animation: fb-flyout 1.2s cubic-bezier(0.2, 0, 0.7, 1) forwards;
+}
 
 /* ===== Mute Toggle Button ===== */
 .mute-btn {
@@ -1107,13 +1130,87 @@ html.is-nav-open { overflow: hidden; }
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 BACK PACKER RENTAL SHOP. All rights reserved.</span>
+      <span class="footer-copy">&copy; 2026 BACK PACKER RENTAL SHOP. All rights reserved.<span class="footer-build">Build by 찬찬한 역주행</span></span>
       <a href="#contact" class="c-button-primary -tone-red -size-sm">사전등록</a>
     </div>
   </div>
 </footer>
 
 <script>
+/* Footer build fly effect */
+(function() {
+  var buildEl = document.querySelector('.footer-build');
+  if (!buildEl) return;
+  var text = buildEl.textContent;
+  buildEl.innerHTML = text.split('').map(function(c) {
+    return '<span class="fb-char">' + (c === ' ' ? '&nbsp;' : c) + '</span>';
+  }).join('');
+
+  var animDuration = 1200;
+  var animating = false;
+
+  buildEl.addEventListener('mouseenter', function() {
+    if (animating) return;
+    animating = true;
+
+    var spans = Array.from(buildEl.querySelectorAll('.fb-char')).reverse();
+    var delay = 0;
+
+    spans.forEach(function(span) {
+      setTimeout(function() {
+        var rect = span.getBoundingClientRect();
+        span.style.visibility = 'hidden';
+
+        /* html 태그에 직접 붙여 body overflow-x:hidden 클리핑 완전 우회 */
+        var clone = document.createElement('span');
+        clone.textContent = span.textContent === '\u00A0' ? ' ' : span.textContent;
+        var cs = getComputedStyle(span);
+        clone.style.cssText = [
+          'position:fixed',
+          'left:' + rect.left + 'px',
+          'top:' + rect.top + 'px',
+          'font-size:' + cs.fontSize,
+          'font-family:' + cs.fontFamily,
+          'font-weight:' + cs.fontWeight,
+          'letter-spacing:' + cs.letterSpacing,
+          'line-height:' + cs.lineHeight,
+          'color:rgba(255,255,255,0.35)',
+          'pointer-events:none',
+          'z-index:999999',
+          'white-space:pre',
+          'will-change:transform,opacity',
+          'overflow:visible'
+        ].join(';');
+        document.documentElement.appendChild(clone);
+
+        /* html, body overflow 임시 해제 */
+        var origHtml = document.documentElement.style.overflowX;
+        var origBody = document.body.style.overflowX;
+        document.documentElement.style.overflowX = 'visible';
+        document.body.style.overflowX = 'visible';
+
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            clone.style.transition = 'none';
+            clone.style.animation = 'fb-flyout ' + animDuration + 'ms cubic-bezier(0.2,0,0.7,1) forwards';
+            setTimeout(function() {
+              clone.remove();
+              document.documentElement.style.overflowX = origHtml;
+              document.body.style.overflowX = origBody;
+            }, animDuration + 100);
+          });
+        });
+      }, delay);
+      delay += animDuration;
+    });
+
+    setTimeout(function() {
+      buildEl.style.visibility = 'hidden';
+      buildEl.style.pointerEvents = 'none';
+    }, delay + 100);
+  });
+})();
+
 /* Header scroll */
 var header = document.querySelector('.site-header');
 var heroEl = document.querySelector('.hero');
